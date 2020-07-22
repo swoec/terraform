@@ -1,6 +1,22 @@
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"]
+}
+
 resource "aws_instance" "jenkins-instance" {
-  ami           = var.AMIS[var.AWS_REGION]
-  instance_type = "t2.small"
+  ami           = data.aws_ami.ubuntu.id #var.AMIS[var.AWS_REGION]
+  instance_type = "t2.micro"
 
   # the VPC subnet
   subnet_id = aws_subnet.main-public-1.id
@@ -13,10 +29,13 @@ resource "aws_instance" "jenkins-instance" {
 
   # user data
   user_data = data.template_cloudinit_config.cloudinit-jenkins.rendered
+  tags = {
+    Name = "jenkins-container"
+  }
 }
 
 resource "aws_ebs_volume" "jenkins-data" {
-  availability_zone = "eu-west-1a"
+  availability_zone = "${var.AWS_REGION}a"
   size              = 20
   type              = "gp2"
   tags = {
@@ -29,4 +48,3 @@ resource "aws_volume_attachment" "jenkins-data-attachment" {
   volume_id   = aws_ebs_volume.jenkins-data.id
   instance_id = aws_instance.jenkins-instance.id
 }
-

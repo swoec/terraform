@@ -3,12 +3,13 @@
 data "template_file" "myapp-task-definition-template" {
   template = file("templates/app.json.tpl")
   vars = {
-    REPOSITORY_URL = replace(aws_ecr_repository.myapp.repository_url, "https://", "")
+    REPOSITORY_URL = replace(aws_ecr_repository.demos.repository_url, "https://", "")
   }
 }
 
 resource "aws_ecs_task_definition" "myapp-task-definition" {
   family                = "myapp"
+  #requires_compatibilities = ["FARGATE"]
   container_definitions = data.template_file.myapp-task-definition-template.rendered
 }
 
@@ -60,4 +61,3 @@ resource "aws_ecs_service" "myapp-service" {
     ignore_changes = [task_definition]
   }
 }
-

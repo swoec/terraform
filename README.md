@@ -1,7 +1,9 @@
 # terraform-course
 
-* These files are part of my Udemy course about Terraform
-* Course URL: https://www.udemy.com/learn-devops-infrastructure-automation-with-terraform/?couponCode=TERRAFORM_GIT
+* These files are part of my Udemy course about Terraform </br>
+  This is version upgrade and changed by Alex Wang to make the script to fully run,just adding .tfvars and mykey files </br>
+  all scripts are running locally one by one </br>
+  some scripts are changed, so maybe there are a few differences from the directory </br>
 
 # Compatibility
 

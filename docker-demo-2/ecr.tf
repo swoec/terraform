@@ -1,4 +1,3 @@
-resource "aws_ecr_repository" "myapp" {
-  name = "myapp"
+resource "aws_ecr_repository" "demos" {
+  name = "demos"
 }
-

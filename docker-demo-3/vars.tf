@@ -1,5 +1,11 @@
+variable "AWS_ACCESS_KEY" {
+}
+
+variable "AWS_SECRET_KEY" {
+}
+
 variable "AWS_REGION" {
-  default = "eu-west-1"
+  default = "ap-southeast-2"
 }
 
 variable "PATH_TO_PRIVATE_KEY" {
@@ -17,6 +23,7 @@ variable "ECS_INSTANCE_TYPE" {
 variable "ECS_AMIS" {
   type = map(string)
   default = {
+    ap-southeast-2 = "ami-00e7bf63"
     us-east-1 = "ami-1924770e"
     us-west-2 = "ami-56ed4936"
     eu-west-1 = "ami-c8337dbb"
@@ -28,6 +35,8 @@ variable "ECS_AMIS" {
 variable "AMIS" {
   type = map(string)
   default = {
+    ap-southeast-2 = "ami-abc3f0c8" #"ami-0e4bc04bd401729d6" #"ami-abc3f0c8"
+    #"ami-abc3f0c8""ami-0012143f102b5d9d0" #"ami-0012143f102b5d9d0" #"ami-000c2343cf03d7fd7"  #"ami-0e4bc04bd401729d6"
     us-east-1 = "ami-13be557e"
     us-west-2 = "ami-06b94666"
     eu-west-1 = "ami-844e0bf7"
@@ -37,8 +46,10 @@ variable "AMIS" {
 variable "INSTANCE_DEVICE_NAME" {
   default = "/dev/xvdh"
 }
-
-variable "JENKINS_VERSION" {
-  default = "2.204.1"
+variable "INSTANCE_USERNAME" {
+  default = "ubuntu"
 }
 
+variable "JENKINS_VERSION" {
+  default = "2.235.2" # 2.190.3 "2.204.1" 2.235.2 2.204.3
+}
