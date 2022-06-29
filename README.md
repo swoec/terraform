@@ -1,4 +1,4 @@
-# terraform-course
+# terraform
 
 * These files are part of my Udemy course about Terraform </br>
   This is version upgrade and changed by Alex Wang to make the script to fully run,just adding .tfvars and mykey files </br>
